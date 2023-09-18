@@ -11,87 +11,54 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
   password  String
-  role      String    @default("USER") // USER, ADMIN, SUPERADMIN
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Address   Address?
-  Product   Product[]
-  Cart      Cart?
-  Order     Order[]
+  role      String   @default("USER") // USER, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Book      Book[]
+  Borrow    Borrow[]
+  Rating    Rating[]
 }
 
-model Address {
+model Book {
   id          Int      @id @default(autoincrement())
-  fullAddress String
-  userId      Int      @unique
-  user        User     @relation(fields: [userId], references: [id])
+  title       String
+  description String
+  author      String
+  cover_url   String
+  file_url    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  uploaderId  Int
+  uploader    User     @relation(fields: [uploaderId], references: [id])
+  Borrow      Borrow[]
+  Rating      Rating[]
 }
 
-model Product {
-  id          Int         @id @default(autoincrement())
-  name        String      @unique
-  description String
-  image       String
-  price       BigInt
-  userId      Int
-  user        User        @relation(fields: [userId], references: [id])
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  CartItem    CartItem[]
-  OrderItem   OrderItem[]
-}
-
-model Cart {
-  id        Int        @id @default(autoincrement())
-  userId    Int        @unique
-  user      User       @relation(fields: [userId], references: [id])
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  CartItem  CartItem[]
-}
-
-model CartItem {
+model Borrow {
   id        Int      @id @default(autoincrement())
-  cartId    Int
-  cart      Cart     @relation(fields: [cartId], references: [id])
-  productId Int
-  product   Product  @relation(fields: [productId], references: [id])
-  quantity  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Order {
-  id        Int         @id @default(autoincrement())
-  status    String      @default("PENDING") // PENDING, PAID, CANCELLED, SHIPPED
+  bookId    Int
+  book      Book     @relation(fields: [bookId], references: [id])
   userId    Int
-  user      User        @relation(fields: [userId], references: [id])
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  OrderItem OrderItem[]
-  Payment   Payment?
-}
-
-model OrderItem {
-  id        Int      @id @default(autoincrement())
-  orderId   Int
-  order     Order    @relation(fields: [orderId], references: [id])
-  productId Int
-  product   Product  @relation(fields: [productId], references: [id])
-  quantity  Int
+  user      User     @relation(fields: [userId], references: [id])
+  status    String   @default("BORROWED") // BORROWED, RETURNED
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([bookId, userId])
 }
 
-model Payment {
+model Rating {
   id        Int      @id @default(autoincrement())
-  orderId   Int      @unique
-  order     Order    @relation(fields: [orderId], references: [id])
+  bookId    Int
+  book      Book     @relation(fields: [bookId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  rating    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([bookId, userId])
 }
