@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { DefaultSidebar } from './sidebar'
 
 export const metadata: Metadata = {
-  title: 'Admin - Khus Bazaar',
-  description: 'Ecommerce website for your programming needs',
+  title: 'Admin - Khus Perpus',
+  description: 'Website perpustakaan untuk kebutuhan buku anda',
 }
 
 export default function AdminLayout({
