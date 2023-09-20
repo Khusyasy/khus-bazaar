@@ -1,72 +1,72 @@
 "use client"
 
+import Link from "next/link";
+
 import {
   Card,
   Typography,
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
 } from "@/material-tailwind";
 
 import {
   PresentationChartBarIcon,
-  ShoppingBagIcon,
   UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
+  BookOpenIcon,
+  BookmarkIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
- 
-export function DefaultSidebar() {
+
+const sidebarItems = [
+  {
+    label: "Dashboard",
+    icon: <PresentationChartBarIcon className="h-5 w-5" />,
+    href: "/admin",
+  },
+  {
+    label: "Users",
+    icon: <UserCircleIcon className="h-5 w-5" />,
+    href: "/admin/users",
+  },
+  {
+    label: "Books",
+    icon: <BookOpenIcon className="h-5 w-5" />,
+    href: "/admin/books",
+  },
+  // {
+  //   label: "Borrowing",
+  //   icon: <BookmarkIcon className="h-5 w-5" />,
+  //   href: "/admin/borrowing",
+  // },
+  {
+    label: "Logout",
+    icon: <PowerIcon className="h-5 w-5" />,
+    href: "/admin/logout",
+  }
+];
+
+export default function DefaultSidebar() {
   return (
     <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 p-4">
         <Typography variant="h5" color="blue-gray">
-          Sidebar
+          Admin Panel
         </Typography>
       </div>
       <List>
-        <ListItem>
-          <ListItemPrefix>
-            <PresentationChartBarIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Dashboard
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <ShoppingBagIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          E-Commerce
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Profile
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
+        {
+          sidebarItems.map((item) => (
+            <Link href={item.href} key={item.label}>
+              <ListItem>
+                <ListItemPrefix>
+                  {item.icon}
+                </ListItemPrefix>
+                {item.label}
+              </ListItem>
+            </Link>
+          ))
+        }
       </List>
     </Card>
   );

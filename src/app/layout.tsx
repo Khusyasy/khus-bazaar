@@ -1,8 +1,6 @@
-"use client"
-
 import './globals.css'
 import type { Metadata } from 'next'
-import { ThemeProvider } from "@material-tailwind/react"
+import { ThemeProvider } from "@/material-tailwind"
 
 export const metadata: Metadata = {
   title: 'Khus Perpus',

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { DefaultSidebar } from './sidebar'
+import DefaultSidebar from './sidebar'
 
 export const metadata: Metadata = {
   title: 'Admin - Khus Perpus',
@@ -12,9 +12,9 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='flex flex-row h-screen items-center'>
+    <div className='flex flex-row h-screen items-center p-4'>
       <DefaultSidebar />
-      <div className='h-screen py-8 px-4'>
+      <div className='h-screen w-full p-8'>
         {children}
       </div>
     </div>

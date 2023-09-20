@@ -13,6 +13,12 @@ import {
   ListItemPrefix,
   ListItemSuffix,
   Chip,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Avatar,
+  Tooltip,
+  Input,
 } from "@material-tailwind/react"
 
 export { 
@@ -28,4 +34,10 @@ export {
   ListItemPrefix,
   ListItemSuffix,
   Chip,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Avatar,
+  Tooltip,
+  Input,
 }

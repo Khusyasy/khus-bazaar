@@ -11,11 +11,12 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Book" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "isbn" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "author" TEXT NOT NULL,
-    "cover_url" TEXT NOT NULL,
-    "file_url" TEXT NOT NULL,
+    "coverUrl" TEXT NOT NULL,
+    "fileUrl" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "uploaderId" INTEGER NOT NULL,
@@ -27,7 +28,7 @@ CREATE TABLE "Borrow" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "bookId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
-    "status" TEXT NOT NULL DEFAULT 'PENDING',
+    "status" TEXT NOT NULL DEFAULT 'BORROWED',
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     CONSTRAINT "Borrow_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "Book" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -48,6 +49,9 @@ CREATE TABLE "Rating" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Book_isbn_key" ON "Book"("isbn");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Borrow_bookId_userId_key" ON "Borrow"("bookId", "userId");

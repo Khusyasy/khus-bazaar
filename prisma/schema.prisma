@@ -24,11 +24,12 @@ model User {
 
 model Book {
   id          Int      @id @default(autoincrement())
+  isbn        String   @unique
   title       String
   description String
   author      String
-  cover_url   String
-  file_url    String
+  coverUrl    String
+  fileUrl     String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   uploaderId  Int
