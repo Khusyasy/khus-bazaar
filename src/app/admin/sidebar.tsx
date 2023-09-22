@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-} from "@/material-tailwind";
+} from '@/material-tailwind';
 
 import {
   PresentationChartBarIcon,
@@ -16,23 +16,23 @@ import {
   BookOpenIcon,
   BookmarkIcon,
   PowerIcon,
-} from "@heroicons/react/24/solid";
+} from '@heroicons/react/24/solid';
 
 const sidebarItems = [
   {
-    label: "Dashboard",
+    label: 'Dashboard',
     icon: <PresentationChartBarIcon className="h-5 w-5" />,
-    href: "/admin",
+    href: '/admin',
   },
   {
-    label: "Users",
+    label: 'Users',
     icon: <UserCircleIcon className="h-5 w-5" />,
-    href: "/admin/users",
+    href: '/admin/users',
   },
   {
-    label: "Books",
+    label: 'Books',
     icon: <BookOpenIcon className="h-5 w-5" />,
-    href: "/admin/books",
+    href: '/admin/books',
   },
   // {
   //   label: "Borrowing",
@@ -40,10 +40,10 @@ const sidebarItems = [
   //   href: "/admin/borrowing",
   // },
   {
-    label: "Logout",
+    label: 'Sign Out',
     icon: <PowerIcon className="h-5 w-5" />,
-    href: "/admin/logout",
-  }
+    href: '/api/auth/signout',
+  },
 ];
 
 export default function DefaultSidebar() {
@@ -55,18 +55,14 @@ export default function DefaultSidebar() {
         </Typography>
       </div>
       <List>
-        {
-          sidebarItems.map((item) => (
-            <Link href={item.href} key={item.label}>
-              <ListItem>
-                <ListItemPrefix>
-                  {item.icon}
-                </ListItemPrefix>
-                {item.label}
-              </ListItem>
-            </Link>
-          ))
-        }
+        {sidebarItems.map((item) => (
+          <Link href={item.href} key={item.label}>
+            <ListItem>
+              <ListItemPrefix>{item.icon}</ListItemPrefix>
+              {item.label}
+            </ListItem>
+          </Link>
+        ))}
       </List>
     </Card>
   );

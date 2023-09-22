@@ -1,11 +1,25 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from "bcrypt"
+const saltRounds = 10;
 
 const prisma = new PrismaClient()
 
 async function main() {
   console.log('Start seeding ...')
-  const users = await prisma.user.findMany()
-  console.log(users)
+  const admin = await prisma.user.create({
+    data: {
+      email: "admin@admin.com",
+      password: bcrypt.hashSync("12345678", saltRounds),
+      role: "ADMIN",
+    }
+  })
+  const user = await prisma.user.create({
+    data: {
+      email: "user@user.com",
+      password: bcrypt.hashSync("12345678", saltRounds),
+      role: "USER",
+    }
+  })
 }
 
 main()
