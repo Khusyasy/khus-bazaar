@@ -3,6 +3,7 @@ import prisma from '@/db';
 import Image from 'next/image';
 import Link from 'next/link';
 import RowAction from './RowAction';
+import { DocumentArrowDownIcon } from '@heroicons/react/24/solid';
 
 const headers = [
   'ISBN',
@@ -20,11 +21,11 @@ export default async function Books() {
   return (
     <div>
       <div className="flex flex-row justify-between">
-        <Typography variant="h3" color="blue-gray">
+        <Typography variant="h3" color="black">
           Books
         </Typography>
         <Link href="/admin/books/new">
-          <Button>Add New</Button>
+          <Button color="blue">Add New</Button>
         </Link>
       </div>
       <Card className="h-full w-full overflow-scroll mt-4">
@@ -34,12 +35,12 @@ export default async function Books() {
               {headers.map((head) => (
                 <th
                   key={head}
-                  className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                  className="border-b border-gray-100 bg-gray-50 p-4"
                 >
                   <Typography
                     variant="small"
-                    color="blue-gray"
-                    className="font-bold leading-none opacity-70"
+                    color="gray"
+                    className="font-bold leading-none"
                   >
                     {head}
                   </Typography>
@@ -47,12 +48,12 @@ export default async function Books() {
               ))}
               <th
                 key="actions"
-                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                className="border-b border-gray-100 bg-gray-50 p-4"
               >
                 <Typography
                   variant="small"
-                  color="blue-gray"
-                  className="font-bold leading-none opacity-70"
+                  color="gray"
+                  className="font-bold leading-none"
                 >
                   Actions
                 </Typography>
@@ -62,11 +63,11 @@ export default async function Books() {
           <tbody>
             {books.length > 0 ? (
               books.map((row) => (
-                <tr key={row.id} className="even:bg-blue-gray-50/50">
+                <tr key={row.id} className="even:bg-gray-50/50">
                   <td className="p-4">
                     <Typography
                       variant="small"
-                      color="blue-gray"
+                      color="gray"
                       className="font-normal"
                     >
                       {row.isbn}
@@ -75,7 +76,7 @@ export default async function Books() {
                   <td className="p-4">
                     <Typography
                       variant="small"
-                      color="blue-gray"
+                      color="gray"
                       className="font-normal"
                     >
                       {row.title}
@@ -84,7 +85,7 @@ export default async function Books() {
                   <td className="p-4">
                     <Typography
                       variant="small"
-                      color="blue-gray"
+                      color="gray"
                       className="font-normal"
                     >
                       {row.author}
@@ -100,7 +101,9 @@ export default async function Books() {
                   </td>
                   <td className="p-4">
                     <Link href={row.fileUrl} download>
-                      <Button color="blue-gray">File</Button>
+                      <Button color="blue" size="sm">
+                        <DocumentArrowDownIcon className="w-5 h-5" />
+                      </Button>
                     </Link>
                   </td>
                   <td className="p-4">
@@ -111,11 +114,7 @@ export default async function Books() {
             ) : (
               <tr>
                 <td className="p-4 text-center" colSpan={headers.length + 1}>
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
+                  <Typography color="gray" className="font-normal">
                     No books found
                   </Typography>
                 </td>
