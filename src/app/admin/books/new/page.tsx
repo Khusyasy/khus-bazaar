@@ -1,4 +1,4 @@
-import { createBook } from '@/actions';
+import { createBook } from '@/actions/books';
 import { Card, Input, Button, Typography, Textarea } from '@/material-tailwind';
 import Link from 'next/link';
 

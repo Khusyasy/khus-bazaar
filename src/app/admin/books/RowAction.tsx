@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { deleteBook } from '@/actions';
+import { deleteBook } from '@/actions/books';
 import { DialogDefault } from '@/components/DialogDefault';
 import { Button, Typography } from '@/material-tailwind';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';

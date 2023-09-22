@@ -1,4 +1,4 @@
-import { editBook } from '@/actions';
+import { editBook } from '@/actions/books';
 import prisma from '@/db';
 import { Card, Input, Button, Typography, Textarea } from '@/material-tailwind';
 import Image from 'next/image';
