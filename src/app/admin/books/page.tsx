@@ -1,25 +1,8 @@
 import { Button, Card, Typography } from '@/material-tailwind';
-import { PrismaClient } from '@prisma/client';
-import { revalidatePath } from 'next/cache';
+import prisma from '@/db';
 import Image from 'next/image';
 import Link from 'next/link';
-
-async function getBooks() {
-  const prisma = new PrismaClient();
-  const books = await prisma.book.findMany();
-  return books;
-}
-
-async function deleteBook(data: FormData) {
-  'use server';
-  const prisma = new PrismaClient();
-  const id = Number(data.get('id'));
-  const book = await prisma.book.findUnique({ where: { id } });
-  if (book) {
-    await prisma.book.delete({ where: { id } });
-  }
-  revalidatePath('/admin/books');
-}
+import RowAction from './RowAction';
 
 const headers = [
   'ISBN',
@@ -29,10 +12,10 @@ const headers = [
   'File',
   // 'Created At',
   // 'Updated At',
-] as const;
+];
 
 export default async function Books() {
-  const books = await getBooks();
+  const books = await prisma.book.findMany();
 
   return (
     <div>
@@ -121,17 +104,7 @@ export default async function Books() {
                     </Link>
                   </td>
                   <td className="p-4">
-                    <div className="flex flex-row gap-2">
-                      <Link href={`/admin/books/${row.id}`}>
-                        <Button color="blue">Edit</Button>
-                      </Link>
-                      <form action={deleteBook}>
-                        <input type="hidden" name="id" value={row.id} />
-                        <Button color="red" type="submit">
-                          Delete
-                        </Button>
-                      </form>
-                    </div>
+                    <RowAction id={row.id} />
                   </td>
                 </tr>
               ))
