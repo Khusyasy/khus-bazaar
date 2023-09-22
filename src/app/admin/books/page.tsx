@@ -107,7 +107,7 @@ export default async function Books() {
                     </Link>
                   </td>
                   <td className="p-4">
-                    <RowAction id={row.id} />
+                    <RowAction id={row.id} title={row.title} />
                   </td>
                 </tr>
               ))

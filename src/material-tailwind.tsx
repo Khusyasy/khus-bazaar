@@ -22,6 +22,10 @@ import {
   Checkbox,
   Textarea,
   Spinner,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 } from '@material-tailwind/react';
 
 export {
@@ -46,4 +50,8 @@ export {
   Checkbox,
   Textarea,
   Spinner,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
 };

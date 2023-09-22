@@ -1,11 +1,30 @@
 'use client';
 
+import { useState } from 'react';
 import { deleteBook } from '@/actions';
-import { Button } from '@/material-tailwind';
+import { DialogDefault } from '@/components/DialogDefault';
+import { Button, Typography } from '@/material-tailwind';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 
-export default async function RowAction({ id }: { id: number }) {
+export default function RowAction({
+  id,
+  title,
+}: {
+  id: number;
+  title: string;
+}) {
+  const [data, setData] = useState<FormData | null>(null);
+  const [open, setOpen] = useState(false);
+  function handleOpen() {
+    setOpen(!open);
+  }
+  function handleOk() {
+    if (!data) return;
+    deleteBook(data);
+    handleOpen();
+  }
+
   return (
     <div className="flex flex-row gap-2">
       <Link href={`/admin/books/${id}`}>
@@ -14,10 +33,9 @@ export default async function RowAction({ id }: { id: number }) {
         </Button>
       </Link>
       <form
-        action={async (formData) => {
-          if (confirm(`Delete book?`)) {
-            await deleteBook(formData);
-          }
+        action={(formData) => {
+          setData(formData);
+          handleOpen();
         }}
       >
         <input type="hidden" name="id" value={id} />
@@ -25,6 +43,16 @@ export default async function RowAction({ id }: { id: number }) {
           <TrashIcon className="h-5 w-5" />
         </Button>
       </form>
+      <DialogDefault
+        title="Delete Book"
+        open={open}
+        handleOpen={handleOpen}
+        handleOk={handleOk}
+      >
+        <Typography variant="h5" color="red">
+          Are you sure you want to delete {title}?
+        </Typography>
+      </DialogDefault>
     </div>
   );
 }
