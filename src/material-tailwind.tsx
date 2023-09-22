@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import {
   ThemeProvider,
@@ -19,9 +19,11 @@ import {
   Avatar,
   Tooltip,
   Input,
-} from "@material-tailwind/react"
+  Checkbox,
+  Textarea,
+} from '@material-tailwind/react';
 
-export { 
+export {
   ThemeProvider,
   Button,
   Navbar,
@@ -40,4 +42,6 @@ export {
   Avatar,
   Tooltip,
   Input,
-}
+  Checkbox,
+  Textarea,
+};
