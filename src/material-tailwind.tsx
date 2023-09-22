@@ -21,6 +21,7 @@ import {
   Input,
   Checkbox,
   Textarea,
+  Spinner,
 } from '@material-tailwind/react';
 
 export {
@@ -44,4 +45,5 @@ export {
   Input,
   Checkbox,
   Textarea,
+  Spinner,
 };

@@ -1,9 +1,9 @@
 'use server';
 
-import prisma from "@/db";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import fs from "fs";
+import prisma from '@/db';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import fs from 'fs';
 import { z } from 'zod';
 import Canvas from 'canvas';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -16,28 +16,13 @@ const bookSchema = z.object({
   description: z.string(),
 });
 
-export async function createBook(data: FormData) {
-  const parsed = bookSchema.parse({
-    isbn: data.get('isbn'),
-    title: data.get('title'),
-    author: data.get('author'),
-    description: data.get('description'),
-  });
-  const file = data.get('pdf') as File;
-
-  const filename = `${parsed.isbn}-${parsed.title}-${parsed.author}`
+function genFilename(title: string) {
+  return `${Date.now()}-${title}`
     .toLowerCase()
     .replace(/ /g, '_');
+}
 
-  if (!fs.existsSync('./public/pdfs')) {
-    fs.mkdirSync('./public/pdfs', { recursive: true });
-  }
-  const pdfArrayBuffer = await file.arrayBuffer();
-  const pdfBuffer = Buffer.from(pdfArrayBuffer);
-  const pdfUrl = `/pdfs/${filename}.pdf`;
-  fs.writeFileSync(`./public${pdfUrl}`, pdfBuffer);
-
-  // get pdf cover as image
+async function getCoverImage(pdfArrayBuffer: ArrayBuffer): Promise<Buffer> {
   const pdfDoc = await pdfjsLib.getDocument(pdfArrayBuffer).promise;
   const pdfPage = await pdfDoc.getPage(1);
   const viewport = pdfPage.getViewport({ scale: 1 });
@@ -52,11 +37,34 @@ export async function createBook(data: FormData) {
     .render(renderContext)
     .promise.then(() => emptyCanvas.toDataURL())
     .then((dataUrl) => dataUrl.replace(/^data:image\/png;base64,/, ''));
+
+  return Buffer.from(pdfImage, 'base64')
+}
+
+export async function createBook(data: FormData) {
+  const parsed = bookSchema.parse({
+    isbn: data.get('isbn'),
+    title: data.get('title'),
+    author: data.get('author'),
+    description: data.get('description'),
+  });
+  const file = data.get('pdf') as File;
+
+  const filename = genFilename(parsed.title);
+
+  if (!fs.existsSync('./public/pdfs')) {
+    fs.mkdirSync('./public/pdfs', { recursive: true });
+  }
+  const pdfArrayBuffer = await file.arrayBuffer();
+  const pdfUrl = `/pdfs/${filename}.pdf`;
+  fs.writeFileSync(`./public${pdfUrl}`, Buffer.from(pdfArrayBuffer));
+
   if (!fs.existsSync('./public/covers')) {
     fs.mkdirSync('./public/covers', { recursive: true });
   }
   const coverUrl = `/covers/${filename}.png`;
-  fs.writeFileSync(`./public${coverUrl}`, Buffer.from(pdfImage, 'base64'));
+  const imageBuffer = await getCoverImage(pdfArrayBuffer);
+  fs.writeFileSync(`./public${coverUrl}`, imageBuffer);
 
   const book = await prisma.book.create({
     data: {
@@ -79,4 +87,68 @@ export async function deleteBook(data: FormData) {
     fs.unlinkSync(`./public${book.coverUrl}`);
   }
   revalidatePath('/admin/books');
+}
+
+export async function editBook(data: FormData) {
+  const id = Number(data.get('id'))
+  const parsed = bookSchema.parse({
+    isbn: data.get('isbn'),
+    title: data.get('title'),
+    author: data.get('author'),
+    description: data.get('description'),
+  });
+  const file = data.get('pdf') as File;
+
+  if (file.size > 0) {
+    // change file
+    const book = await prisma.book.findUnique({
+      where: {
+        id: id,
+      }
+    });
+    if (!book) return;
+    fs.unlinkSync(`./public${book.fileUrl}`);
+    fs.unlinkSync(`./public${book.coverUrl}`);
+
+    const filename = genFilename(parsed.title);
+
+    if (!fs.existsSync('./public/pdfs')) {
+      fs.mkdirSync('./public/pdfs', { recursive: true });
+    }
+    const pdfArrayBuffer = await file.arrayBuffer();
+    const pdfUrl = `/pdfs/${filename}.pdf`;
+    fs.writeFileSync(`./public${pdfUrl}`, Buffer.from(pdfArrayBuffer));
+
+    if (!fs.existsSync('./public/covers')) {
+      fs.mkdirSync('./public/covers', { recursive: true });
+    }
+    const coverUrl = `/covers/${filename}.png`;
+    const imageBuffer = await getCoverImage(pdfArrayBuffer);
+    fs.writeFileSync(`./public${coverUrl}`, imageBuffer);
+
+    await prisma.book.update({
+      where: {
+        id: id
+      },
+      data: {
+        ...parsed,
+        coverUrl: coverUrl,
+        fileUrl: pdfUrl,
+        uploaderId: 1,
+      },
+    });
+  } else {
+    // no file
+    await prisma.book.update({
+      where: {
+        id: id
+      },
+      data: {
+        ...parsed,
+        uploaderId: 1,
+      },
+    });
+  }
+
+  redirect('/admin/books')
 }

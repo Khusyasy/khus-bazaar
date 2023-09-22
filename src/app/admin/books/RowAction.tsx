@@ -15,7 +15,7 @@ export default async function RowAction({ id }: { id: number }) {
       </Link>
       <form
         action={async (formData) => {
-          if (confirm(`Delete book ${id}?`)) {
+          if (confirm(`Delete book?`)) {
             await deleteBook(formData);
           }
         }}
