@@ -3,6 +3,7 @@
 import prisma from '@/db';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth/next';
 import fs from 'fs';
 import { z } from 'zod';
 import Canvas from 'canvas';
@@ -42,6 +43,16 @@ async function getCoverImage(pdfArrayBuffer: ArrayBuffer): Promise<Buffer> {
 }
 
 export async function createBook(data: FormData) {
+  const session = await getServerSession();
+  if (!session) return;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session.user.email ?? "",
+    }
+  })
+  if (!user) return;
+
   const parsed = bookSchema.parse({
     isbn: data.get('isbn'),
     title: data.get('title'),
@@ -71,7 +82,7 @@ export async function createBook(data: FormData) {
       ...parsed,
       coverUrl: coverUrl,
       fileUrl: pdfUrl,
-      uploaderId: 1,
+      uploaderId: user.id,
     },
   });
 
@@ -90,6 +101,16 @@ export async function deleteBook(data: FormData) {
 }
 
 export async function editBook(data: FormData) {
+  const session = await getServerSession();
+  if (!session) return;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session.user.email ?? "",
+    }
+  })
+  if (!user) return;
+
   const id = Number(data.get('id'))
   const parsed = bookSchema.parse({
     isbn: data.get('isbn'),
@@ -134,7 +155,7 @@ export async function editBook(data: FormData) {
         ...parsed,
         coverUrl: coverUrl,
         fileUrl: pdfUrl,
-        uploaderId: 1,
+        uploaderId: user.id,
       },
     });
   } else {
@@ -145,7 +166,7 @@ export async function editBook(data: FormData) {
       },
       data: {
         ...parsed,
-        uploaderId: 1,
+        uploaderId: user.id,
       },
     });
   }
