@@ -14,10 +14,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-blue-gray-50">
+    <html lang="en">
       <ThemeProvider>
         <SessionProviderWrapper>
-          <body>{children}</body>
+          <body className="bg-blue-gray-50 min-h-screen">{children}</body>
         </SessionProviderWrapper>
       </ThemeProvider>
     </html>

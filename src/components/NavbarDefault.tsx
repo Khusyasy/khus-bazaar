@@ -7,23 +7,25 @@ import {
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/solid';
 import { getServerSession } from 'next-auth';
-import { authOptions } from './api/auth/[...nextauth]/route';
+import { authOptions } from '../app/api/auth/[...nextauth]/route';
 import Link from 'next/link';
 
-export default async function NavbarDefault() {
+export default async function NavbarDefault({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const session = await getServerSession(authOptions);
+  const q = searchParams?.q || '';
 
   return (
     <Navbar className="sticky top-4 z-10 mx-auto max-w-screen-xl px-4 py-3">
       <div className="flex flex-row items-center justify-between gap-y-4 text-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          variant="h6"
-          className="ml-2 cursor-pointer py-1.5"
-        >
-          Khus Perpus
-        </Typography>
+        <Link href="/">
+          <Typography variant="h6" className="ml-2 cursor-pointer py-1.5">
+            Khus Perpus
+          </Typography>
+        </Link>
         <form
           className="relative flex w-max grow mx-8"
           method="get"
@@ -39,6 +41,7 @@ export default async function NavbarDefault() {
             }}
             required
             crossOrigin="false"
+            defaultValue={q}
           />
           <IconButton
             size="sm"

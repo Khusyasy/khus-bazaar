@@ -1,7 +1,6 @@
 import { Card, Typography } from '@/material-tailwind';
-import NavbarDefault from './NavbarDefault';
+import NavbarDefault from '../components/NavbarDefault';
 import prisma from '@/db';
-import BookCard from '@/components/BookCard';
 import BooksContainer from '@/components/BooksContainer';
 
 export default async function Home() {
@@ -19,8 +18,8 @@ export default async function Home() {
   });
 
   return (
-    <div className="p-4 flex flex-col justify-center items-center bg-light-green-300">
-      <NavbarDefault />
+    <div className="p-4 flex flex-col items-center bg-light-green-300 min-h-screen">
+      <NavbarDefault searchParams={{}} />
       <Card className="h-full w-full overflow-scroll mt-4 p-4 max-w-screen-xl bg-light-green-100">
         <Typography variant="h4" color="blue-gray">
           Brand New
