@@ -48,8 +48,10 @@ async function main() {
   await prisma.book.deleteMany()
   await prisma.user.deleteMany();
 
-  fs.rmSync('./public/pdfs', { recursive: true });
-  fs.rmSync('./public/covers', { recursive: true });
+  if (fs.existsSync('./public/pdfs'))
+    fs.rmSync('./public/pdfs', { recursive: true });
+  if (fs.existsSync('./public/covers'))
+    fs.rmSync('./public/covers', { recursive: true });
 
   fs.mkdirSync('./public/pdfs', { recursive: true });
   fs.mkdirSync('./public/covers', { recursive: true });
