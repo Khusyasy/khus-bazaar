@@ -11,6 +11,8 @@ if (
   }/node_modules/canvas/build/Release:${process.env.LD_LIBRARY_PATH || ''}`;
 }
 
+console.log('LD_LIBRARY_PATH', process.env.LD_LIBRARY_PATH);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
