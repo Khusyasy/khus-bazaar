@@ -8,18 +8,18 @@ Live Website: TBD
 
 `Khus Perpus` adalah website perpustakaan online yang digunakan untuk meminjam buku secara online. Fitur utama yang tersedia di website ini adalah sebagai berikut:
 
-### Fitur User
+### Fitur
 
-1. OAuth Login (Google)
+1. Role Based, OAuth Login (Google)
 2. Mencari buku
 3. Melihat detail buku
 4. Meminjam buku
 5. Melihat daftar buku yang dipinjam
-6. Memberikan rating ke buku yang dipinjam (not implemented yet)
+<!-- 6. Memberikan rating ke buku yang dipinjam (not implemented yet) -->
 
 ### Fitur Admin
 
-1. Credential Login / OAuth Login (Google)
+1. Role Based, Credential Login / OAuth Login (Google)
 2. Manajemen buku
    > Saat menambahkan buku, sistem akan secara otomatis mengambil gambar cover buku dari file pdf yang diupload.
 3. Pencarian dan Pagination buku
@@ -90,3 +90,11 @@ Live Website: TBD
    ```
 
 8. Buka `http://localhost:3000` atau sesuai dengan port yang digunakan
+
+## Identitas
+
+Projek ini dibuat untuk memenuhi GDSC ITB 2022/2023 Last Project Submission.
+
+- Nama: Muhammad Luthfi Khusyasy
+- GDSC ID: 220020005
+- Path: Web Development
