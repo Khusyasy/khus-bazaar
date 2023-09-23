@@ -29,7 +29,7 @@ export default async function Search({
       <NavbarDefault searchParams={searchParams} />
       <Card className="h-full w-full overflow-scroll mt-4 p-4 max-w-screen-xl bg-light-green-100">
         <Typography variant="h4" color="blue-gray">
-          Results for "{q}"
+          Results for &quot;{q}&quot;
         </Typography>
         <BooksContainer books={books} />
       </Card>

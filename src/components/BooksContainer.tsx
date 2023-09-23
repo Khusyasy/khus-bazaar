@@ -11,7 +11,7 @@ export default function BooksContainer({
   return (
     <div className="flex flex-row flex-wrap gap-2.5 mt-2">
       {books.length > 0 ? (
-        books.map((book) => <BookCard book={book} />)
+        books.map((book) => <BookCard book={book} key={book.id} />)
       ) : (
         <Typography
           variant="h6"
