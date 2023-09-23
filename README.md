@@ -2,41 +2,44 @@
 
 Live Website: TBD
 
-> Masih bermasalah dengan deploy ke Vercel.
+> There are issues with the deployment to Vercel, so the live website is not available yet.
 
-## Deskripsi Website
+## Website Description
 
-`Khus Perpus` adalah website perpustakaan online yang digunakan untuk meminjam buku secara online. Fitur utama yang tersedia di website ini adalah sebagai berikut:
+`Khus Perpus` is an online library website that allows users to borrow books and download them in pdf format. The main purpose of this website is to provide a place for people to read books online. This website is also equipped with a search feature to make it easier for users to find books. The features of this website are:
 
-### Fitur
+### Main Features
 
 1. Role Based, OAuth Login (Google)
-2. Mencari buku
-3. Melihat detail buku
-4. Meminjam buku
-5. Melihat daftar buku yang dipinjam
-<!-- 6. Memberikan rating ke buku yang dipinjam (not implemented yet) -->
+2. Books Search
+3. Books Detail
+4. Books Borrowing
+   > Users can download the books that they have borrowed.
+5. List of Borrowed Books
+<!-- 6. Give ratings (not implemented yet) -->
 
-### Fitur Admin
+### Admin Features
 
 1. Role Based, Credential Login / OAuth Login (Google)
-2. Manajemen buku
-   > Saat menambahkan buku, sistem akan secara otomatis mengambil gambar cover buku dari file pdf yang diupload.
-3. Pencarian dan Pagination buku
-4. Manajemen user
-5. Pencarian dan Pagination user
+2. Books Management
+   > When adding a book, the system will automatically take the book cover image from the uploaded pdf file.
+3. Books Search and Pagination
+4. Users Management
+5. Users Search and Pagination
 
-## Teknologi yang Digunakan
+## Technologies Used
 
 - [Next.js](https://nextjs.org/) + App router + Server Actions
-  > Projek ini menggunakan fitur eksperimental [Server Actions](https://nextjs.org/docs/app/api-reference/functions/server-actions). Fitur ini berguna agar tidak perlu membuat API endpoint untuk melakukan manajemen data di database.
+
+  > This project uses the experimental feature [Server Actions](https://nextjs.org/docs/app/api-reference/functions/server-actions). This feature is useful so that you don't need to create an API endpoint to do server mutations / database management.
+
 - [Material Tailwind](https://material-tailwind.com/)
 - [Next Auth](https://next-auth.js.org/) + OAuth Provider (Google)
 - [Prisma ORM](https://www.prisma.io/)
 
-## Instalasi
+## Installation
 
-1. Clone repository ini
+1. Clone this repository
 
    ```
    git clone https://github.com/Khusyasy/khus-perpus.git
@@ -48,52 +51,55 @@ Live Website: TBD
    npm install
    ```
 
-3. Buat file `.env.local` dan isi seperti file `.env.example`
+3. Create `.env.local` file and fill in the values from the `.env.example` file
 
-   > `DATABASE_URL` bisa mengikuti [dokumentasi ini](https://www.prisma.io/docs/concepts/database-connectors/sqlite#using-a-file-based-sqlite-database)
+   > `DATABASE_URL` follow [this documentation](https://www.prisma.io/docs/concepts/database-connectors/sqlite#using-a-file-based-sqlite-database)
 
-   > `NEXTAUTH_URL` bisa mengikuti [dokumentasi ini](https://next-auth.js.org/configuration/options#nextauth_url)
+   > `NEXTAUTH_URL` follow [this documentation](https://next-auth.js.org/configuration/options#nextauth_url)
 
-   > `NEXTAUTH_SECRET` bisa mengikut [dokumentasi ini](https://next-auth.js.org/configuration/options#secret)
+   > `NEXTAUTH_SECRET` follow [this documentation](https://next-auth.js.org/configuration/options#secret)
 
-   > `GOOGLE_CLIENT_ID` dan `GOOGLE_CLIENT_SECRET` bisa mengikuti [dokumentasi ini](https://next-auth.js.org/providers/google#configuration)
+   > `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` follow [this documentation](https://next-auth.js.org/providers/google#configuration)
 
-4. Jalankan migrasi database
+4. Run database migration
 
    ```
    npx prisma migrate dev
    ```
 
-5. Jalankan seed database (opsional)
-
-   > tahap ini akan memasukkan data dummy user dan buku ke database, tahap ini juga akan generate file pdf yang digunakan untuk buku dan file png yang digunakan untuk cover buku.
+5. Run seed script (optional)
 
    ```
    npx prisma db seed
    ```
 
-   | Email           | Password |
+   Dummy user for testing:
+   | Email | Password |
    | --------------- | -------- |
    | admin@admin.com | 12345678 |
-   | user@user.com   | 12345678 |
+   | user@user.com | 12345678 |
 
-6. Jalankan build
+   > this step will insert dummy user and book data into the database, this step will also generate pdf files used for books and png files used for book covers.
+
+6. Run build script
 
    ```
    npm run build
    ```
 
-7. Jalankan server
+7. Run the server
 
    ```
    npm run start
    ```
 
-8. Buka `http://localhost:3000` atau sesuai dengan port yang digunakan
+8. Open `http://localhost:3000` in your browser
 
-## Identitas
+## Identity
 
-Projek ini dibuat untuk memenuhi GDSC ITB 2022/2023 Last Project Submission.
+This project is created for GDSC ITB 2022/2023 Last Project Submission.
+
+Made by:
 
 - Nama: Muhammad Luthfi Khusyasy
 - GDSC ID: 220020005
