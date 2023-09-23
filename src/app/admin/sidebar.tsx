@@ -15,6 +15,7 @@ import {
   UserCircleIcon,
   BookOpenIcon,
   PowerIcon,
+  HomeIcon,
 } from '@heroicons/react/24/solid';
 
 import { useSession } from 'next-auth/react';
@@ -35,11 +36,11 @@ const sidebarItems = [
     icon: <BookOpenIcon className="h-5 w-5" />,
     href: '/admin/books',
   },
-  // {
-  //   label: "Borrowing",
-  //   icon: <BookmarkIcon className="h-5 w-5" />,
-  //   href: "/admin/borrowing",
-  // },
+  {
+    label: 'Home',
+    icon: <HomeIcon className="h-5 w-5" />,
+    href: '/',
+  },
   {
     label: 'Sign Out',
     icon: <PowerIcon className="h-5 w-5" />,

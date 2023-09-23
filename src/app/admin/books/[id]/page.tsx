@@ -1,8 +1,8 @@
 import { editBook } from '@/actions/books';
+import BackButton from '@/components/BackButton';
 import prisma from '@/db';
 import { Card, Input, Button, Typography, Textarea } from '@/material-tailwind';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export type UserDetailParams = {
   id: string;
@@ -25,9 +25,7 @@ export default async function UserDetail({
         <Typography variant="h3" color="black">
           {book ? `Editing book ${book.title}` : 'Book Not Found'}
         </Typography>
-        <Link href="/admin/books">
-          <Button color="blue">Back</Button>
-        </Link>
+        <BackButton />
       </div>
       {book && (
         <>

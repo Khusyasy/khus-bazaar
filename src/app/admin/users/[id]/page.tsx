@@ -1,8 +1,8 @@
 import { editUser } from '@/actions/users';
+import BackButton from '@/components/BackButton';
 import SelectWrapper from '@/components/SelectWrapper';
 import prisma from '@/db';
 import { Card, Input, Button, Typography, Option } from '@/material-tailwind';
-import Link from 'next/link';
 
 export type UserDetailParams = {
   id: string;
@@ -25,9 +25,7 @@ export default async function UserDetail({
         <Typography variant="h3" color="black">
           {user ? `Editing user ${user.email}` : 'User Not Found'}
         </Typography>
-        <Link href="/admin/users">
-          <Button color="blue">Back</Button>
-        </Link>
+        <BackButton />
       </div>
       {user && (
         <Card className="h-full w-full overflow-scroll mt-4 p-4">

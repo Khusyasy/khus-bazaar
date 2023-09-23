@@ -1,6 +1,6 @@
 import { createBook } from '@/actions/books';
+import BackButton from '@/components/BackButton';
 import { Card, Input, Button, Typography, Textarea } from '@/material-tailwind';
-import Link from 'next/link';
 
 export default async function BooksNew() {
   return (
@@ -9,9 +9,7 @@ export default async function BooksNew() {
         <Typography variant="h3" color="black">
           New Book
         </Typography>
-        <Link href="/admin/books">
-          <Button color="blue">Back</Button>
-        </Link>
+        <BackButton />
       </div>
       <Card className="h-full w-full overflow-scroll mt-4 p-4">
         <form className="w-full max-w-screen-2xl" action={createBook}>

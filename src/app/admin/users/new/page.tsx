@@ -1,7 +1,7 @@
 import { createUser } from '@/actions/users';
+import BackButton from '@/components/BackButton';
 import SelectWrapper from '@/components/SelectWrapper';
 import { Card, Input, Button, Typography, Option } from '@/material-tailwind';
-import Link from 'next/link';
 
 export default async function UsersNew() {
   return (
@@ -10,9 +10,7 @@ export default async function UsersNew() {
         <Typography variant="h3" color="black">
           New User
         </Typography>
-        <Link href="/admin/users">
-          <Button color="blue">Back</Button>
-        </Link>
+        <BackButton />
       </div>
       <Card className="h-full w-full overflow-scroll mt-4 p-4">
         <form className="w-full max-w-screen-2xl" action={createUser}>
