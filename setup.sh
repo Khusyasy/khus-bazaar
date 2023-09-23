@@ -19,3 +19,6 @@ cd ..
 
 patchelf --replace-needed /lib64/libz.so.1 libz.so.X ./node_modules/canvas/build/Release/libpng16.so.16
 patchelf --replace-needed libz.so.1 libz.so.X ./node_modules/canvas/build/Release/libpng16.so.16
+
+yum install libuuid-devel libmount-devel
+cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/
