@@ -39,13 +39,13 @@ Live Website: TBD
 1. Clone repository ini
 
    ```
-      git clone https://github.com/Khusyasy/khus-perpus.git
+   git clone https://github.com/Khusyasy/khus-perpus.git
    ```
 
 2. Install dependencies
 
    ```
-      npm install
+   npm install
    ```
 
 3. Buat file `.env.local` dan isi seperti file `.env.example`
@@ -61,7 +61,7 @@ Live Website: TBD
 4. Jalankan migrasi database
 
    ```
-      npx prisma migrate dev
+   npx prisma migrate dev
    ```
 
 5. Jalankan seed database (opsional)
@@ -69,7 +69,7 @@ Live Website: TBD
    > tahap ini akan memasukkan data dummy user dan buku ke database, tahap ini juga akan generate file pdf yang digunakan untuk buku dan file png yang digunakan untuk cover buku.
 
    ```
-      npx prisma db seed
+   npx prisma db seed
    ```
 
    | Email           | Password |
@@ -80,13 +80,13 @@ Live Website: TBD
 6. Jalankan build
 
    ```
-      npm run build
+   npm run build
    ```
 
 7. Jalankan server
 
    ```
-      npm run start
+   npm run start
    ```
 
 8. Buka `http://localhost:3000` atau sesuai dengan port yang digunakan
