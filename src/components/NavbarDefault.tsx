@@ -7,13 +7,13 @@ import {
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/solid';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import Link from 'next/link';
 
 export default async function NavbarDefault({
-  searchParams,
+  searchParams = {},
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const session = await getServerSession(authOptions);
   const q = searchParams?.q || '';
