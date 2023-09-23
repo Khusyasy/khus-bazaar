@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "chmod u+rx ./setup.sh && ./setup.sh && npx prisma migrate dev && next build",
+    "build": "npx prisma migrate dev && next build",
+    "now-build": "chmod u+rx ./setup.sh && ./setup.sh && npm run build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
