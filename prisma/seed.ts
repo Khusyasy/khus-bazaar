@@ -4,7 +4,7 @@ const saltRounds = 10
 
 import * as pdfjsLib from 'pdfjs-dist';
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.min.js';
-import Canvas from '@napi-rs/canvas';
+import Canvas from 'canvas';
 import { faker } from '@faker-js/faker';
 import generatePDF from './pdfs';
 import fs from 'fs';
