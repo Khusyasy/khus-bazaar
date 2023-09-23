@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth/next';
 import fs from 'fs';
 import { z } from 'zod';
-import Canvas from 'canvas';
+import Canvas from '@napi-rs/canvas';
 import * as pdfjsLib from 'pdfjs-dist';
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.min.js';
 
