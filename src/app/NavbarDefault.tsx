@@ -14,7 +14,7 @@ export default async function NavbarDefault() {
   const session = await getServerSession(authOptions);
 
   return (
-    <Navbar className="sticky top-4 z-10 mx-auto max-w-screen-xl px-4 py-3 bg-light-green-100 border-green-100">
+    <Navbar className="sticky top-4 z-10 mx-auto max-w-screen-xl px-4 py-3 bg-light-green-50 border-green-100">
       <div className="flex flex-row items-center justify-between gap-y-4 text-gray-900">
         <Typography
           as="a"

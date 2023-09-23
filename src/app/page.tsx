@@ -1,61 +1,38 @@
+import { Card, Typography } from '@/material-tailwind';
 import NavbarDefault from './NavbarDefault';
+import prisma from '@/db';
+import BookCard from '@/components/BookCard';
+import BooksContainer from '@/components/BooksContainer';
 
-export default function Home() {
+export default async function Home() {
+  const newestBooks = await prisma.book.findMany({
+    orderBy: { createdAt: 'desc' },
+    take: 8,
+  });
+  const recommendedBooks = await prisma.book.findMany({
+    orderBy: {
+      Rating: {
+        _count: 'desc',
+      },
+    },
+    take: 8,
+  });
+
   return (
     <div className="m-4">
       <NavbarDefault />
-      <div className="p-10">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-        facilis eaque incidunt. Magnam itaque optio magni accusantium.
-        Repudiandae consequatur iste delectus consectetur quo? Possimus soluta
-        inventore ab saepe, quaerat excepturi ipsam vitae, ipsa optio
-        perferendis officiis suscipit error, eaque corrupti autem magni
-        mollitia! Nisi, debitis hic? Culpa odio assumenda obcaecati sed aut,
-        cupiditate exercitationem aspernatur aliquid tenetur? Consequuntur minus
-        natus velit iusto autem, sint nulla deserunt, eligendi unde itaque
-        obcaecati nisi ea eveniet eos eum quae iste error, tempora ex earum
-        omnis facilis! Distinctio odio temporibus facere quis praesentium
-        eligendi harum natus, a dolorum nihil saepe quod iste ut dolores. C
-      </div>
-      <div className="p-10">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-        facilis eaque incidunt. Magnam itaque optio magni accusantium.
-        Repudiandae consequatur iste delectus consectetur quo? Possimus soluta
-        inventore ab saepe, quaerat excepturi ipsam vitae, ipsa optio
-        perferendis officiis suscipit error, eaque corrupti autem magni
-        mollitia! Nisi, debitis hic? Culpa odio assumenda obcaecati sed aut,
-        cupiditate exercitationem aspernatur aliquid tenetur? Consequuntur minus
-        natus velit iusto autem, sint nulla deserunt, eligendi unde itaque
-        obcaecati nisi ea eveniet eos eum quae iste error, tempora ex earum
-        omnis facilis! Distinctio odio temporibus facere quis praesentium
-        eligendi harum natus, a dolorum nihil saepe quod iste ut dolores.
-      </div>
-      <div className="p-10">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-        facilis eaque incidunt. Magnam itaque optio magni accusantium.
-        Repudiandae consequatur iste delectus consectetur quo? Possimus soluta
-        inventore ab saepe, quaerat excepturi ipsam vitae, ipsa optio
-        perferendis officiis suscipit error, eaque corrupti autem magni
-        mollitia! Nisi, debitis hic? Culpa odio assumenda obcaecati sed aut,
-        cupiditate exercitationem aspernatur aliquid tenetur? Consequuntur minus
-        natus velit iusto autem, sint nulla deserunt, eligendi unde itaque
-        obcaecati nisi ea eveniet eos eum quae iste error, tempora ex earum
-        omnis facilis! Distinctio odio temporibus facere quis praesentium
-        eligendi harum natus, a dolorum nihil saepe quod iste ut dolores.
-      </div>
-      <div className="p-10">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-        facilis eaque incidunt. Magnam itaque optio magni accusantium.
-        Repudiandae consequatur iste delectus consectetur quo? Possimus soluta
-        inventore ab saepe, quaerat excepturi ipsam vitae, ipsa optio
-        perferendis officiis suscipit error, eaque corrupti autem magni
-        mollitia! Nisi, debitis hic? Culpa odio assumenda obcaecati sed aut,
-        cupiditate exercitationem aspernatur aliquid tenetur? Consequuntur minus
-        natus velit iusto autem, sint nulla deserunt, eligendi unde itaque
-        obcaecati nisi ea eveniet eos eum quae iste error, tempora ex earum
-        omnis facilis! Distinctio odio temporibus facere quis praesentium
-        eligendi harum natus, a dolorum nihil saepe quod iste ut dolores.
-      </div>
+      <Card className="h-full w-full overflow-scroll mt-4 p-4 bg-light-green-50 border-green-100">
+        <Typography variant="h4" color="blue-gray">
+          Brand New
+        </Typography>
+        <BooksContainer books={newestBooks} />
+      </Card>
+      <Card className="h-full w-full overflow-scroll mt-4 p-4 bg-light-green-50 border-green-100">
+        <Typography variant="h4" color="blue-gray">
+          Recommended
+        </Typography>
+        <BooksContainer books={recommendedBooks} />
+      </Card>
     </div>
   );
 }
