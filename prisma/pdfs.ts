@@ -29,7 +29,7 @@ export default async function generatePDF(title: string, author: string): Promis
 
   doc.end();
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 100));
   const pdfBuffer = fs.readFileSync('./output.pdf');
 
   fs.unlinkSync('./output.pdf');

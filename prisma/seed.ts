@@ -31,9 +31,19 @@ async function getCoverImage(pdfArrayBuffer: ArrayBuffer): Promise<Buffer> {
 }
 
 async function main() {
-  console.log('Start seeding ...')
+  console.log('Clearing database / files ...')
+
+  await prisma.borrow.deleteMany()
+  await prisma.book.deleteMany()
   await prisma.user.deleteMany();
 
+  fs.rmSync('./public/pdfs', { recursive: true });
+  fs.rmSync('./public/covers', { recursive: true });
+
+  fs.mkdirSync('./public/pdfs', { recursive: true });
+  fs.mkdirSync('./public/covers', { recursive: true });
+
+  console.log('Start seeding ...')
   const admin = await prisma.user.upsert({
     where: {
       email: "admin@admin.com",
@@ -87,16 +97,8 @@ async function main() {
     ids.push(admin.id);
   }
 
-  await prisma.book.deleteMany()
-
   const authors = Array.from({ length: 10 }, () => faker.person.fullName());
 
-  if (!fs.existsSync('./public/pdfs')) {
-    fs.mkdirSync('./public/pdfs', { recursive: true });
-  }
-  if (!fs.existsSync('./public/covers')) {
-    fs.mkdirSync('./public/covers', { recursive: true });
-  }
   for (let i = 0; i < 40; i++) {
     const title = faker.lorem.words({ min: 3, max: 5 });
     const author = faker.helpers.arrayElement(authors);
