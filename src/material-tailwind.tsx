@@ -26,6 +26,8 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Option,
+  Select,
 } from '@material-tailwind/react';
 
 export {
@@ -54,4 +56,6 @@ export {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Option,
+  Select,
 };

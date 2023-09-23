@@ -42,7 +42,7 @@ export default async function UserDetail({
           <Card className="h-full w-full overflow-scroll mt-4 p-4">
             <form className="w-full max-w-screen-2xl" action={editBook}>
               <div className="mb-4 flex flex-col gap-6">
-                <input type="hidden" name="id" defaultValue={book.id} />
+                <input type="hidden" name="id" value={book.id} />
                 <Input
                   size="lg"
                   label="ISBN"

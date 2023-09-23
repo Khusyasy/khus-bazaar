@@ -32,8 +32,8 @@ model Book {
   fileUrl     String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  uploaderId  Int
-  uploader    User     @relation(fields: [uploaderId], references: [id])
+  uploaderId  Int?
+  uploader    User?    @relation(fields: [uploaderId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   Borrow      Borrow[]
   Rating      Rating[]
 }
