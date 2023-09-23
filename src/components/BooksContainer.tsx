@@ -9,7 +9,7 @@ export default function BooksContainer({
   books: Prisma.PromiseReturnType<typeof prisma.book.findMany>;
 }) {
   return (
-    <div className="flex flex-row flex-wrap gap-2 mt-2">
+    <div className="flex flex-row flex-wrap gap-2.5 mt-2">
       {books.length > 0 ? (
         books.map((book) => <BookCard book={book} />)
       ) : (

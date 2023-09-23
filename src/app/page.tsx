@@ -19,15 +19,15 @@ export default async function Home() {
   });
 
   return (
-    <div className="m-4">
+    <div className="p-4 flex flex-col justify-center items-center bg-light-green-300">
       <NavbarDefault />
-      <Card className="h-full w-full overflow-scroll mt-4 p-4 bg-light-green-50 border-green-100">
+      <Card className="h-full w-full overflow-scroll mt-4 p-4 max-w-screen-xl bg-light-green-100">
         <Typography variant="h4" color="blue-gray">
           Brand New
         </Typography>
         <BooksContainer books={newestBooks} />
       </Card>
-      <Card className="h-full w-full overflow-scroll mt-4 p-4 bg-light-green-50 border-green-100">
+      <Card className="h-full w-full overflow-scroll mt-4 p-4 max-w-screen-xl bg-light-green-100">
         <Typography variant="h4" color="blue-gray">
           Recommended
         </Typography>
