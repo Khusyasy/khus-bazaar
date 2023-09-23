@@ -37,6 +37,7 @@ export default function BookCard({
             {book.title}
           </Typography>
           <Typography color="gray">{book.author}</Typography>
+          <hr className="my-1" />
           <Typography variant="small" color="gray">
             {book.description.length > maxDescLength
               ? `${book.description.slice(0, maxDescLength)}...`

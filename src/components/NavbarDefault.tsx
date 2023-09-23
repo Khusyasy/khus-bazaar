@@ -27,7 +27,7 @@ export default async function NavbarDefault({
           </Typography>
         </Link>
         <form
-          className="relative flex w-max grow mx-8"
+          className="relative flex w-max grow mx-4"
           method="get"
           action="/search"
         >
@@ -36,9 +36,6 @@ export default async function NavbarDefault({
             label="Search"
             name="q"
             className="pr-20"
-            containerProps={{
-              className: 'min-w-[288px]',
-            }}
             required
             crossOrigin="false"
             defaultValue={q}
