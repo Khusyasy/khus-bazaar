@@ -196,11 +196,11 @@ export default async function Books({
                     />
                   </td>
                   <td className="p-4">
-                    <Link href={row.fileUrl} download>
+                    <a href={'/api/public' + row.fileUrl} download>
                       <Button color="blue" size="sm">
                         <DocumentArrowDownIcon className="w-5 h-5" />
                       </Button>
-                    </Link>
+                    </a>
                   </td>
                   <td className="p-4">
                     <RowAction id={row.id} title={row.title} />
