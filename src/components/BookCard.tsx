@@ -26,7 +26,7 @@ export default function BookCard({
       <Card className="h-full w-full">
         <CardHeader floated={false} className="relative h-72 p-2">
           <Image
-            src={book.coverUrl}
+            src={'/api/public' + book.coverUrl}
             alt={book.title}
             layout="fill"
             objectFit="cover"

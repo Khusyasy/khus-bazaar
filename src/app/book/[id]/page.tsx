@@ -45,7 +45,7 @@ export default async function BookDetail({
         </div>
         <div className="mt-4 flex flex-row gap-4">
           <Image
-            src={book.coverUrl}
+            src={'/api/public' + book.coverUrl}
             alt={book.title}
             width={420}
             height={500}
@@ -75,7 +75,7 @@ export default async function BookDetail({
                   <td className="p-2">
                     {borrowed ? (
                       <a
-                        href={book.fileUrl}
+                        href={'/api/public' + book.fileUrl}
                         download
                         className="underline text-cyan-500"
                       >

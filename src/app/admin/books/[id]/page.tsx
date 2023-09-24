@@ -31,7 +31,7 @@ export default async function UserDetail({
         <>
           <Card className="w-full overflow-scroll mt-4 p-4 items-center">
             <Image
-              src={book.coverUrl}
+              src={'/api/public' + book.coverUrl}
               alt={book.title}
               width={135}
               height={200}

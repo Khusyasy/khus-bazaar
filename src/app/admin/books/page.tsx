@@ -189,7 +189,7 @@ export default async function Books({
                   </td>
                   <td className="p-4">
                     <Image
-                      src={row.coverUrl}
+                      src={'/api/public' + row.coverUrl}
                       alt={row.title}
                       width={50}
                       height={65}
