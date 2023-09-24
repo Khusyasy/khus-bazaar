@@ -26,7 +26,7 @@ export default async function Search() {
   console.log(JSON.stringify(borrowedBooks));
   return (
     <div className="p-4 flex flex-col items-center bg-light-green-300 min-h-screen">
-      <NavbarDefault />
+      <NavbarDefault session={session} />
       <Card className="h-full w-full overflow-scroll mt-4 p-4 max-w-screen-xl bg-light-green-100">
         <Typography variant="h4" color="blue-gray">
           Borrowed Books

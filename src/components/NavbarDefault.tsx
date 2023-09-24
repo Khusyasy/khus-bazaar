@@ -6,17 +6,17 @@ import {
   UserIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/solid';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import Link from 'next/link';
+import type { Session } from 'next-auth';
 
-export default async function NavbarDefault({
+export default function NavbarDefault({
   searchParams = {},
+  session,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
+  session: Session | null;
 }) {
-  const session = await getServerSession(authOptions);
-  const q = searchParams?.q || '';
+  const q = (searchParams?.q as string) || '';
 
   return (
     <Navbar className="sticky top-4 z-10 mx-auto max-w-screen-xl px-4 py-3">

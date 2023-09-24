@@ -35,7 +35,7 @@ export default async function BookDetail({
 
   return (
     <div className="p-4 flex flex-col items-center bg-light-green-300 min-h-screen">
-      <NavbarDefault />
+      <NavbarDefault session={session} />
       <Card className="h-full w-full overflow-scroll mt-4 p-4 max-w-screen-xl bg-light-green-100">
         <div className="flex flex-row justify-between">
           <Typography variant="h3" color="blue-gray">
