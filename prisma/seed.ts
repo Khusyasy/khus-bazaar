@@ -13,7 +13,8 @@ import { PrismaClient } from '@prisma/client'
 import bcrypt from "bcrypt"
 const saltRounds = 10
 
-import * as pdfjsLib from 'pdfjs-dist';
+// https://github.com/mozilla/pdf.js/issues/14729#issuecomment-1082831050
+import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.js';
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.min.js';
 import Canvas from 'canvas';
 import { faker } from '@faker-js/faker';

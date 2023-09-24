@@ -7,7 +7,8 @@ import { getServerSession } from 'next-auth/next';
 import fs from 'fs';
 import { z } from 'zod';
 import Canvas from 'canvas';
-import * as pdfjsLib from 'pdfjs-dist';
+// https://github.com/mozilla/pdf.js/issues/14729#issuecomment-1082831050
+import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.js';
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.min.js';
 
 const bookSchema = z.object({
