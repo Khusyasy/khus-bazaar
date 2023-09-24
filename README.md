@@ -52,7 +52,7 @@ Live Website: TBD
    git clone https://github.com/Khusyasy/khus-perpus.git
    ```
 
-2. Install dependencies, use node version `16.x`
+2. Install dependencies, use node version `18.x`
 
    ```
    npm install
