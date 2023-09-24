@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/material-tailwind';
-import SessionProviderWrapper from './SessionProviderWrapper';
+import SessionProviderWrapper from '../components/SessionProviderWrapper';
 
 export const metadata: Metadata = {
   title: 'Khus Perpus',

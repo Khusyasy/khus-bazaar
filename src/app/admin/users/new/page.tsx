@@ -1,9 +1,11 @@
+'use client';
+
 import { createUser } from '@/actions/users';
 import BackButton from '@/components/BackButton';
 import SelectWrapper from '@/components/SelectWrapper';
 import { Card, Input, Button, Typography, Option } from '@/material-tailwind';
 
-export default async function UsersNew() {
+export default function UsersNew() {
   return (
     <div>
       <div className="flex flex-row justify-between">

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import DefaultSidebar from './sidebar';
+import DefaultSidebar from '../../components/Sidebar';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
@@ -19,7 +19,7 @@ export default async function AdminLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect('/api/auth/signin?callbackUrl=/admin');
+    redirect('/api/auth/signin?callbackUrl=/admin/dashboard');
   }
 
   if (session.role !== 'ADMIN') {

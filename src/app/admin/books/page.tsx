@@ -33,12 +33,12 @@ export default async function Books({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  let books: Prisma.PromiseReturnType<typeof prisma.book.findMany>;
+  let books: Prisma.PromiseReturnType<typeof prisma.book.findMany> = [];
 
   const perPage = 5;
 
-  const page = parseInt(searchParams.page as string) || 1;
-  const q = (searchParams.q as string) || '';
+  const page = searchParams?.page ? parseInt(searchParams?.page as string) : 1;
+  const q = (searchParams?.q ?? '') as string;
   if (page) {
     books = await prisma.book.findMany({
       orderBy: { createdAt: 'desc' },

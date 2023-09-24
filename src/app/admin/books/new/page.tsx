@@ -2,7 +2,7 @@ import { createBook } from '@/actions/books';
 import BackButton from '@/components/BackButton';
 import { Card, Input, Button, Typography, Textarea } from '@/material-tailwind';
 
-export default async function BooksNew() {
+export default function BooksNew() {
   return (
     <div>
       <div className="flex flex-row justify-between">

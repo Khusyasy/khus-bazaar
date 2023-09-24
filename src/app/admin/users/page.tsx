@@ -29,12 +29,12 @@ export default async function Users({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  let users: Prisma.PromiseReturnType<typeof prisma.user.findMany>;
+  let users: Prisma.PromiseReturnType<typeof prisma.user.findMany> = [];
 
   const perPage = 8;
 
-  const page = parseInt(searchParams.page as string) || 1;
-  const q = (searchParams.q as string) || '';
+  const page = searchParams?.page ? parseInt(searchParams?.page as string) : 1;
+  const q = (searchParams?.q ?? '') as string;
   if (page) {
     users = await prisma.user.findMany({
       orderBy: { createdAt: 'desc' },

@@ -51,7 +51,7 @@ export default function NavbarDefault({
         </form>
         <div className="flex gap-2 md:mr-4">
           {session?.role === 'ADMIN' && (
-            <Link href="/admin">
+            <Link href="/admin/dashboard">
               <IconButton
                 variant="filled"
                 color="blue-gray"

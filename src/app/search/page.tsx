@@ -15,7 +15,7 @@ export default async function Search({
 
   let books: Prisma.PromiseReturnType<typeof prisma.book.findMany>;
 
-  const q = (searchParams.q as string) || '';
+  const q = (searchParams?.q as string) ?? '';
   books = await prisma.book.findMany({
     orderBy: { createdAt: 'desc' },
     where: {

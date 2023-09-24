@@ -24,7 +24,7 @@ const sidebarItems = [
   {
     label: 'Dashboard',
     icon: <PresentationChartBarIcon className="h-5 w-5" />,
-    href: '/admin',
+    href: '/admin/dashboard',
   },
   {
     label: 'Users',

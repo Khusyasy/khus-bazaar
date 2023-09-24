@@ -23,7 +23,7 @@ export default async function Search() {
       },
     },
   });
-  console.log(JSON.stringify(borrowedBooks));
+
   return (
     <div className="p-4 flex flex-col items-center bg-light-green-300 min-h-screen">
       <NavbarDefault session={session} />
