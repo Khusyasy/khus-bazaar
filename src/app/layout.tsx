@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Website perpustakaan untuk kebutuhan buku anda',
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
