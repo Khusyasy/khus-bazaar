@@ -4,6 +4,8 @@ Live Website: TBD
 
 > There are issues with the deployment to Vercel, so the live website is not available yet.
 
+> Local deployment is still available, follow the installation at the bottom.
+
 ## Website Description
 
 `Khus Perpus` is an online library website that allows users to borrow books and download them in pdf format. The main purpose of this website is to provide a place for people to read books online. This website is also equipped with a search feature to make it easier for users to find books. The features of this website are:
