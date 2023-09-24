@@ -27,6 +27,13 @@ Live Website: TBD
 4. Users Management
 5. Users Search and Pagination
 
+### Dummy user for testing
+
+| Email           | Password |
+| --------------- | -------- |
+| admin@admin.com | 12345678 |
+| user@user.com   | 12345678 |
+
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/) + App router + Server Actions
@@ -45,7 +52,7 @@ Live Website: TBD
    git clone https://github.com/Khusyasy/khus-perpus.git
    ```
 
-2. Install dependencies
+2. Install dependencies, use node version `16.x`
 
    ```
    npm install
@@ -67,17 +74,11 @@ Live Website: TBD
    npx prisma migrate dev
    ```
 
-5. Run seed script (optional)
+5. Run seed script (optional, usually already done in the previous migration step)
 
    ```
    npx prisma db seed
    ```
-
-   Dummy user for testing:
-   | Email | Password |
-   | --------------- | -------- |
-   | admin@admin.com | 12345678 |
-   | user@user.com | 12345678 |
 
    > this step will insert dummy user and book data into the database, this step will also generate pdf files used for books and png files used for book covers.
 
@@ -101,6 +102,6 @@ This project is created for GDSC ITB 2022/2023 Last Project Submission.
 
 Made by:
 
-- Nama: Muhammad Luthfi Khusyasy
+- Name: Muhammad Luthfi Khusyasy
 - GDSC ID: 220020005
 - Path: Web Development
